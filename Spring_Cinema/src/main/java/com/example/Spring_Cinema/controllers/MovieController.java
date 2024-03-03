@@ -28,4 +28,18 @@ public class MovieController {
 
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
+        movie.setId(id);
+        movieService.updateMovie(movie);
+        return new ResponseEntity<>(movie, OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteMovie(@PathVariable Long id) {
+        movieService.deleteMovie(id);
+        return new ResponseEntity(null, NO_CONTENT);
+
+    }
+
 }
